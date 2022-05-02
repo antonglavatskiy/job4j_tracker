@@ -3,14 +3,6 @@ package ru.job4j.inheritance;
 public class Builder extends Engineer {
     private Project project;
 
-    public Builder(String name, String surname, String education, String birthday) {
-        super(name, surname, education, birthday);
-    }
-
-    public Builder(String name, String surname, String education, String birthday, Customer customer) {
-        super(name, surname, education, birthday, customer);
-    }
-
     public Builder(String name, String surname, String education, String birthday, Customer customer, Project project) {
         super(name, surname, education, birthday, customer);
         this.project = project;
