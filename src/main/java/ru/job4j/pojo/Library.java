@@ -27,7 +27,7 @@ public class Library {
         System.out.println("\nBooks list with title \"Clean code\":");
         for (int i = 0; i < books.length; i++) {
             Book book = books[i];
-            if (books[i].getTitle().equals("Clean code")) {
+            if ("Clean code".equals(books[i].getTitle())) {
                 System.out.println(book.getTitle() + " - " + book.getCount());
             }
         }
