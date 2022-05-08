@@ -41,6 +41,7 @@ public class StartUITest {
 
     @Test
     public void whenDeleteItem() {
+        /* Добавим в tracker новую заявку */
         Output output = new StubOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Deleted item"));
