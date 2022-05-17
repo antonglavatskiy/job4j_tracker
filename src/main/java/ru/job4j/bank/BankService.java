@@ -9,7 +9,6 @@ public class BankService {
     private final Map<User, List<Account>> users = new HashMap<>();
 
     public void addUser(User user) {
-        //users.putIfAbsent(user, new ArrayList<Account>());
         if (users.get(user) == null) {
             users.put(user, new ArrayList<Account>());
         }
