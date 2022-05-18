@@ -9,10 +9,8 @@ public class ConvertList2Array {
         int row = 0;
         int cell = 0;
         for (Integer num : list) {
-            result[row][cell] = num;
-            if (cell < cells - 1) {
-                cell++;
-            } else {
+            result[row][cell++] = num;
+            if (cell == result[row].length) {
                 row++;
                 cell = 0;
             }
