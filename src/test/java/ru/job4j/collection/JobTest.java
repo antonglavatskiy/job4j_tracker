@@ -54,8 +54,8 @@ public class JobTest {
     @Test
     public void whenComparatorAscByPriorityAndAscByName() {
         Comparator<Job> comparator = new JobAscByPriority().thenComparing(new JobAscByName());
-        int rsl = comparator.compare(new Job("Study", 4), new Job("Wait", 2));
-        assertThat(rsl, greaterThan(0));
+        int rsl = comparator.compare(new Job("Study", 2), new Job("Wait", 2));
+        assertThat(rsl, lessThan(0));
     }
 
 }
