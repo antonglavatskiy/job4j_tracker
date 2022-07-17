@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -70,8 +71,7 @@ public class SqlTrackerTest {
         SqlTracker tracker = new SqlTracker(connection);
         Item first = tracker.add(new Item("First"));
         Item second = tracker.add(new Item("Second"));
-        List<Item> result = List.of(first, second);
-        MatcherAssert.assertThat(result, is(tracker.findAll()));
+        MatcherAssert.assertThat(tracker.findAll(), is(List.of(first, second)));
     }
 
     @Test
@@ -80,8 +80,7 @@ public class SqlTrackerTest {
         Item first = tracker.add(new Item("First"));
         Item second = tracker.add(new Item("Second"));
         Item third = tracker.add(new Item("First"));
-        List<Item> result = List.of(first, third);
-        MatcherAssert.assertThat(result, is(tracker.findByName(first.getName())));
+        MatcherAssert.assertThat(tracker.findByName("First"), is(List.of(first, third)));
     }
 
     @Test
