@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsNull;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,7 +16,6 @@ import java.util.List;
 import java.util.Properties;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 
 public class SqlTrackerTest {
     private static Connection connection;
@@ -54,7 +54,7 @@ public class SqlTrackerTest {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         tracker.add(item);
-        assertThat(tracker.findById(item.getId()), is(item));
+        MatcherAssert.assertThat(tracker.findById(item.getId()), is(item));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class SqlTrackerTest {
         Item bug = new Item("Bug");
         Item item = tracker.add(bug);
         Item result = tracker.findById(item.getId());
-        assertThat(result.getName(), is(item.getName()));
+        MatcherAssert.assertThat(result.getName(), is(item.getName()));
     }
 
     @Test
@@ -74,7 +74,7 @@ public class SqlTrackerTest {
         tracker.add(first);
         tracker.add(second);
         Item result = tracker.findAll().get(0);
-        assertThat(result.getName(), is(first.getName()));
+        MatcherAssert.assertThat(result.getName(), is(first.getName()));
     }
 
     @Test
@@ -88,7 +88,7 @@ public class SqlTrackerTest {
         tracker.add(new Item("Second"));
         tracker.add(new Item("First"));
         List<Item> result = tracker.findByName(second.getName());
-        assertThat(result.get(1).getName(), is(second.getName()));
+        MatcherAssert.assertThat(result.get(1).getName(), is(second.getName()));
     }
 
     @Test
@@ -101,7 +101,7 @@ public class SqlTrackerTest {
         Item bugWithDesc = new Item();
         bugWithDesc.setName("Bug with description");
         tracker.replace(id, bugWithDesc);
-        assertThat(tracker.findById(id).getName(), is("Bug with description"));
+        MatcherAssert.assertThat(tracker.findById(id).getName(), is("Bug with description"));
     }
 
     @Test
@@ -112,6 +112,7 @@ public class SqlTrackerTest {
         tracker.add(bug);
         int id = bug.getId();
         tracker.delete(id);
-        assertThat(tracker.findById(id), is(IsNull.nullValue()));
+        MatcherAssert.assertThat(tracker.findById(id), is(IsNull.nullValue()));
     }
+
 }
