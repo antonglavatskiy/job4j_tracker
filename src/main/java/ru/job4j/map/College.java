@@ -28,7 +28,7 @@ public class College {
         if (student.isPresent()) {
             Set<Subject> subjects = students.get(student.get());
             for (var subj : subjects) {
-                if (name.equals(subj.getName())) {
+                if (name.equals(subj.name())) {
                     rsl = Optional.of(subj);
                     break;
                 }
