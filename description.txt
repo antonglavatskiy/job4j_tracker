@@ -1,0 +1,23 @@
+При запуске программы выбрал SerialGC с размером heap 64MB
+-XX:+UseSerialGC -Xmx64m -Xms64m -Xlog:gc:serialGC.txt
+Добавлял и удалял по 300_000 заявок 5 раз
+
+jconsole
+GC произвел сборку 98 раз:
+GC time:0,354 seconds on Copy (81 collections)
+        0,818 seconds on MarkSweepCompact (18 collections)
+18 раз полная сборка
+
+jmap
+При добавлении 300_000 заявок создается такое же количество экземпляров
+- LocalDateTime
+- LocalDate
+- LocalTime
+и остальные
+Всего: 2031471 экземпляров размером  62732360 байт
+
+jstat
+При создании 300_000 экземпляров класса Item
+полностью заполняется Eden и old generation, survivor space свободно
+
+
